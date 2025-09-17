@@ -6,13 +6,13 @@
   padding: 0;
 }
 
-main {
+body {
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  padding: 2rem;
   background: linear-gradient(180deg, #9d9bbd 0%, #f3f3f3 78.37%);
   font-family: "Inter", sans-serif;
   font-style: normal;
+  justify-content: center;
+  padding: 2rem;
 }
