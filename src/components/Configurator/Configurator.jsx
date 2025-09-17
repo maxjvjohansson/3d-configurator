@@ -1,6 +1,6 @@
 import './Configurator.css'
 import { Canvas } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
+import { useGLTF, OrbitControls } from '@react-three/drei'
 
 function CreditCard() {
 	const { scene } = useGLTF('/models/credit_card/scene.gltf')
@@ -11,7 +11,9 @@ export default function Configurator() {
 	return (
 		<section>
 			<Canvas>
+				<ambientLight intensity={3} />
 				<CreditCard />
+				<OrbitControls />
 			</Canvas>
 		</section>
 	)
