@@ -42,7 +42,7 @@ nav a {
 }
 
 nav a:hover {
-  text-decoration: underline;
+  opacity: 60%;
 }
 
 .cart-btn {
