@@ -2,9 +2,12 @@ import Navbar from "./components/Navbar/Navbar.jsx";
 
 function App() {
   return (
-    <main>
-      <Navbar />
-    </main>
+    <>
+      <header>
+        <Navbar />
+      </header>
+      <main></main>
+    </>
   );
 }
 
