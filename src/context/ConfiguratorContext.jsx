@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const ConfiguratorContext = createContext();
 
-export function ConfiguratorProvider({ children }) {
+export default function ConfiguratorProvider({ children }) {
   const [material, setMaterial] = useState("plastic");
   const [color, setColor] = useState("blue");
   const [pattern, setPattern] = useState("none");
