@@ -1,3 +1,4 @@
+import Button from "../Button/Button";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -18,7 +19,7 @@ export default function Navbar() {
           <a href="/">FAQ</a>
         </li>
         <li>
-          <button className="cart-btn">ADD TO CART</button>
+          <Button label="ADD TO CART" />
         </li>
       </ul>
     </nav>
