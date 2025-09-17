@@ -1,9 +1,12 @@
 .navbar {
-  width: 80%;
-  height: 5.5rem;
   display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-width: 60rem;
+  height: 5.5rem;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
   padding: 0 2rem;
   border-radius: 5.0625rem;
   background: #f3f3f3;
@@ -43,18 +46,4 @@ nav a {
 
 nav a:hover {
   opacity: 60%;
-}
-
-.cart-btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
-  border: none;
-  background: #a3a3a3;
-  color: #fff;
-  font-family: Inter;
-  font-size: 1.25rem;
-  font-style: italic;
-  font-weight: 400;
-  line-height: normal;
-  cursor: pointer;
 }
