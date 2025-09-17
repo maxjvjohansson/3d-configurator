@@ -4,7 +4,7 @@ import { useGLTF, OrbitControls } from '@react-three/drei'
 
 function CreditCard() {
 	const { scene } = useGLTF('/models/credit_card/scene.gltf')
-	return <primitive object={scene} scale={0.03} />
+	return <primitive object={scene} scale={0.032} />
 }
 
 export default function Configurator() {
