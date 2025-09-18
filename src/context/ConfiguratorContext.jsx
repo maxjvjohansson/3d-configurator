@@ -3,20 +3,20 @@ import { createContext, useContext, useState } from "react";
 const ConfiguratorContext = createContext();
 
 export default function ConfiguratorProvider({ children }) {
-  const [material, setMaterial] = useState("plastic");
   const [color, setColor] = useState("blue");
   const [pattern, setPattern] = useState("none");
+  const [finish, setFinish] = useState("matte");
   const [text, setText] = useState("John Doe");
 
   return (
     <ConfiguratorContext.Provider
       value={{
-        material,
-        setMaterial,
         color,
         setColor,
         pattern,
         setPattern,
+        finish,
+        setFinish,
         text,
         setText,
       }}
