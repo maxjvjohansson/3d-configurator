@@ -1,0 +1,22 @@
+.radioContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 3px solid var(--White-50, #cacaca);
+  background: var(--White-75, #efefef);
+}
+
+.radioGroup {
+  display: flex;
+  flex-wrap: wrap; /* allow wrapping */
+  gap: 1rem; /* spacing between radios */
+}
+
+.radioBtn {
+  flex: 1 1 calc(33.333% - 1rem); /* 3 per row, minus gap */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
