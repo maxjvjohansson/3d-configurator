@@ -15,7 +15,6 @@
 }
 
 .radioBtn {
-  flex: 1 1 calc(33.333% - 1rem);
   display: flex;
   align-items: center;
   gap: 0.5rem;
