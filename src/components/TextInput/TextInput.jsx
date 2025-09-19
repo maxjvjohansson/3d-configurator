@@ -5,7 +5,7 @@ export default function TextInput({
   label = "Text",
   placeholder = "Your text here...",
 }) {
-  const { text, setText } = useConfigurator();
+  const { setText } = useConfigurator();
 
   return (
     <div className="text-input">
@@ -14,7 +14,6 @@ export default function TextInput({
         id="card-text"
         type="text"
         placeholder={placeholder}
-        value={text}
         onChange={(e) => setText(e.target.value)}
       />
     </div>
