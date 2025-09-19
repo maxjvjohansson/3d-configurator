@@ -6,12 +6,13 @@ export default function RadioContainer({ header, name, options }) {
     <div className="radioContainer">
       <h2>{header}</h2>
       <div className="radioGroup">
-        {Object.entries(options).map(([key, value]) => (
+        {Object.entries(options).map(([key, { label, fillColor }]) => (
           <RadioButton
             key={key}
             name={name}
-            value={value.toLowerCase()}
-            label={value}
+            value={label.toLowerCase()}
+            label={label}
+            fillColor={fillColor}
           />
         ))}
       </div>

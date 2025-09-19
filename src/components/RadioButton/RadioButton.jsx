@@ -1,13 +1,11 @@
 import "./RadioButton.css";
 import { useConfigurator } from "../../context/ConfiguratorContext";
 
-export default function RadioButton({ name, value, label }) {
+export default function RadioButton({ name, value, label, fillColor }) {
   const { color, setColor, finish, setFinish } = useConfigurator();
 
-  // Figure out what’s the "current value" for this group
   const selectedValue = name === "color" ? color : finish;
 
-  // Change handler
   const handleChange = (e) => {
     if (name === "color") {
       setColor(e.target.value);
@@ -26,6 +24,7 @@ export default function RadioButton({ name, value, label }) {
           value={value}
           checked={selectedValue === value}
           onChange={handleChange}
+          style={{ "--radio-fill": fillColor }}
         />
         {label && <label htmlFor={`${name}-${value}`}>{label}</label>}
       </div>
