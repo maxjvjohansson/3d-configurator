@@ -10,12 +10,12 @@
 
 .radioGroup {
   display: flex;
-  flex-wrap: wrap; /* allow wrapping */
-  gap: 1rem; /* spacing between radios */
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .radioBtn {
-  flex: 1 1 calc(33.333% - 1rem); /* 3 per row, minus gap */
+  flex: 1 1 calc(33.333% - 1rem);
   display: flex;
   align-items: center;
   gap: 0.5rem;
