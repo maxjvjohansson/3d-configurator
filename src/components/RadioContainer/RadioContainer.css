@@ -20,3 +20,7 @@
   align-items: center;
   gap: 0.5rem;
 }
+
+.radioHeader {
+  font-size: 1.125rem;
+}

@@ -4,7 +4,7 @@ import "./RadioContainer.css";
 export default function RadioContainer({ header, name, options }) {
   return (
     <div className="radioContainer">
-      <h2>{header}</h2>
+      <h2 className="radioHeader">{header}</h2>
       <div className="radioGroup">
         {Object.entries(options).map(([key, { label, fillColor }]) => (
           <RadioButton

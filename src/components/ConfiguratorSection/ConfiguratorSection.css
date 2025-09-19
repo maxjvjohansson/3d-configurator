@@ -1,0 +1,6 @@
+.contentContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  margin-top: 5rem;
+}
