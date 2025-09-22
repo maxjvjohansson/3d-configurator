@@ -7,8 +7,6 @@
   gap: 0.625rem;
   border: none;
   border-radius: 2.5625rem;
-  background: #8f8f8f;
-  color: #fff;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 400;
@@ -16,6 +14,13 @@
   cursor: pointer;
 }
 
-.button:hover {
+.button--disabled {
+  background: #8f8f8f;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.button--active {
   background: var(--darkest-blue);
+  color: #fff;
 }
