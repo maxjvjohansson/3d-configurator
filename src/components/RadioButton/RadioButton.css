@@ -6,9 +6,7 @@
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  border: 2px solid #ccc;
   cursor: pointer;
-
   background: var(--radio-fill, #ddd);
   transition: all 0.2s ease;
 
@@ -16,7 +14,8 @@
 }
 
 .radioBtn label {
-  color: #878787;
+  color: var(--white-25);
+  cursor: pointer;
 }
 
 .radioBtn input[type="radio"]:checked {
@@ -25,7 +24,7 @@
 }
 
 .radioBtn input[type="radio"]:checked + label {
-  color: black;
+  color: var(--black-75);
 }
 
 .radioInput input {

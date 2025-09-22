@@ -34,4 +34,5 @@ body {
   font-style: normal;
   justify-content: center;
   padding: 2rem;
+  color: var(--black-100);
 }

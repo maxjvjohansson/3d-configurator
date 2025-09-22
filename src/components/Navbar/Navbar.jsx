@@ -19,7 +19,7 @@ export default function Navbar() {
           <a href="/">FAQ</a>
         </li>
         <li>
-          <Button label="ADD TO CART" />
+          <Button label="Add to Cart" />
         </li>
       </ul>
     </nav>

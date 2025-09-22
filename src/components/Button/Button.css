@@ -1,17 +1,21 @@
 .button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
+  display: flex;
+  width: 11.25rem;
+  padding: 0.75rem 2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
   border: none;
-  background: #a3a3a3;
+  border-radius: 2.5625rem;
+  background: #8f8f8f;
   color: #fff;
-  font-family: Inter;
   font-size: 1.25rem;
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   line-height: normal;
   cursor: pointer;
 }
 
 .button:hover {
-  background: #3b6094;
+  background: var(--darkest-blue);
 }
