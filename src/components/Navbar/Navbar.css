@@ -9,7 +9,7 @@
   flex-shrink: 0;
   padding: 0 2rem;
   border-radius: 5.0625rem;
-  background: #f3f3f3;
+  background: var(--white-100);
 }
 
 .logo {
@@ -17,7 +17,7 @@
   font-size: 1.88325rem;
   font-style: italic;
   text-decoration: none;
-  color: #000;
+  color: var(--black-100);
 }
 
 .logo-light {
@@ -37,7 +37,7 @@
 
 nav a {
   text-decoration: none;
-  color: black;
+  color: var(--black-100);
   font-size: 1.25rem;
   font-style: italic;
   font-weight: 400;

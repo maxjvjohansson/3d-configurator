@@ -4,8 +4,8 @@
   gap: 1.5rem;
   padding: 1.5rem;
   border-radius: 1rem;
-  border: 3px solid var(--White-50, #cacaca);
-  background: var(--White-75, #efefef);
+  border: 3px solid var(--white-50);
+  background: var(--white-75);
 }
 
 .radioGroup {
