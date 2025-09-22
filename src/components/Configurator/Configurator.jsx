@@ -9,29 +9,35 @@ function CreditCard() {
 	const { color, finish } = useConfigurator()
 
 	const colorMap = {
-		blue: '#446089',
-		pink: '#F4B3FF',
-		red: '#E17171',
-		silver: '#C0C0C0',
-		gold: '#FFD700'
+		blue: '#415797',
+		pink: '#B565A7',
+		red: '#a23a3f',
+		silver: '#A3A8B0',
+		gold: '#bea75b'
 	}
 
 	useEffect(() => {
-		if (materials['Gold plate1.002']) {
-			const material = materials['Gold plate1.002']
+		if (materials['Rosa']) {
+			const material = materials['Rosa']
+
 			material.color.set(colorMap[color])
 
 			if (finish === 'matte') {
 				material.metalness = 0
-				material.roughness = 1
-				material.reflectivity = 0
-			} else if (finish === 'glossy') {
+				material.roughness = 0.9
+				material.clearcoat = 0
+				material.clearcoatRoughness = 1
+				material.reflectivity = 0.1
+			} else if (finish === 'shiny') {
 				material.metalness = 0
 				material.roughness = 0.05
+				material.clearcoat = 1
+				material.clearcoatRoughness = 0
 				material.reflectivity = 1
-			} else if (finish === 'holographic') {
-				material.metalness = 0.5
-				material.roughness = 0.1
+			} else if (finish === 'metallic') {
+				material.metalness = 1
+				material.roughness = 0.3
+				material.clearcoat = 0
 				material.reflectivity = 1
 			}
 
@@ -46,14 +52,13 @@ export default function Configurator() {
 	return (
 		<section className="configurator-section">
 			<Canvas>
-				<ambientLight intensity={1.5} />
-				<directionalLight position={[0, 1, 10]} intensity={1.5} castShadow />
-				<spotLight
-					position={[5, 0, 5]}
-					angle={0.5}
-					intensity={0.8}
-					target-position={[0, 0, 0]}
+				<Environment
+					preset="forest"
+					backgroundIntensity={0.5}
+					environmentIntensity={0.5}
 				/>
+				<ambientLight intensity={0.8} />
+				<directionalLight position={[5, 8, 5]} intensity={0.8} />
 				<CreditCard />
 				<OrbitControls />
 			</Canvas>
