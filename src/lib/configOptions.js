@@ -18,5 +18,8 @@ export const finishPick = {
     label: "Glossy",
     fillColor: "linear-gradient(to right, #6f6f6fff, #e0e0e0)",
   },
-  2: { label: "Holographic", fillColor: "#ba68c8" },
+  2: {
+    label: "Holographic",
+    fillColor: "conic-gradient(#C9FFBA 0deg, #FFB3B3 180deg, #9DD4FF 360deg)",
+  },
 };
