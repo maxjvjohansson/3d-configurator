@@ -1,3 +1,22 @@
+:root {
+  --light-blue: #a4cbf4;
+  --blue: #4997ea;
+  --dark-blue: #1563b7;
+  --darkest-blue: #0b325b;
+  --light-yellow: #f4e4a4;
+  --yellow: #eab449;
+  --dark-yellow: #b78615;
+  --darkest-yellow: #5b4b0b;
+  --white-100: #f3f3f3;
+  --white-75: #efefef;
+  --white-50: #cacaca;
+  --white-25: #878787;
+  --black-100: #111111;
+  --black-75: #1e1e1e;
+  --black-50: #2d2d2d;
+  --black-25: #404040;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 * {
