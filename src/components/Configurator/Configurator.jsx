@@ -1,73 +1,46 @@
-import "./Configurator.css";
-import { Canvas } from "@react-three/fiber";
+import './Configurator.css'
+import { Canvas } from '@react-three/fiber'
 import { useGLTF, OrbitControls, Text } from "@react-three/drei";
-import { useEffect } from "react";
-import { useConfigurator } from "../../context/ConfiguratorContext";
-import { useGradientTexture } from "../../hooks/useGradientTexture";
+import { useEffect } from 'react'
+import { useConfigurator } from '../../context/ConfiguratorContext'
 
 function CreditCard() {
-  const { scene, materials, nodes } = useGLTF(
-    "../../../credit_card/scene.gltf"
-  );
-  const { color, finish, text } = useConfigurator();
+	const { scene, materials, nodes } = useGLTF('../../../credit_card/scene.gltf')
+	const { color, finish, text } = useConfigurator()
 
-  const colorMap = {
-    blue: { type: "color", value: "#446089" },
-    pink: { type: "color", value: "#F4B3FF" },
-    red: { type: "color", value: "#E17171" },
-    silver: { type: "gradient", value: ["#616060ff", "#b0b0b0ff"] },
-    gold: { type: "gradient", value: ["#80560eff", "#e5b414ff"] },
-  };
+	const colorMap = {
+		blue: '#31417D',
+		pink: '#AD5681',
+		red: '#8A1D16',
+		silver: '#BCB9BB',
+		gold: '#CCA149'
+	}
 
-  const config = colorMap[color];
+	useEffect(() => {
+		if (materials['Rosa']) {
+			const material = materials['Rosa']
 
-  // Always call hook, but pass defaults if not a gradient
-  const gradientTexture = useGradientTexture(
-    config.type === "gradient" ? config.value[0] : "#000000",
-    config.type === "gradient" ? config.value[1] : "#000000"
-  );
+			material.color.set(colorMap[color])
 
-  useEffect(() => {
-    if (materials["Rosa"]) {
-      const material = materials["Rosa"];
+			if (finish === 'matte') {
+				material.metalness = 0
+				material.roughness = 1
+				material.envMapIntensity = 0
+			} else if (finish === 'shiny') {
+				material.metalness = 0.1
+				material.roughness = 0.3
+				material.envMapIntensity = 1
+			} else {
+				material.metalness = 0.8
+				material.roughness = 0.1
+				material.envMapIntensity = 0
+			}
 
-      if (config.type === "color") {
-        // flat colors
-        material.color.set(config.value);
-        material.map = null;
+			material.needsUpdate = true
+		}
+	}, [color, finish, materials, colorMap])
 
-        if (finish === "matte") {
-          material.metalness = 0;
-          material.roughness = 1;
-        } else if (finish === "glossy") {
-          material.metalness = 0;
-          material.roughness = 0.05;
-        } else if (finish === "holographic") {
-          material.metalness = 0.5;
-          material.roughness = 0.1;
-        }
-        //modifies metalness and rougness if silver or gold is selected
-      } else if (config.type === "gradient") {
-        material.map = gradientTexture;
-        material.color.set("#ffffff"); // so gradient shows
-
-        if (finish === "matte") {
-          material.metalness = 0.7;
-          material.roughness = 0.5;
-        } else if (finish === "glossy") {
-          material.metalness = 0.9;
-          material.roughness = 0.2;
-        } else if (finish === "holographic") {
-          material.metalness = 1.0;
-          material.roughness = 0.1;
-        }
-      }
-
-      material.needsUpdate = true;
-    }
-  }, [color, finish, materials, gradientTexture, config]);
-
-  return (
+	return (
     <group scale={1.4} position={[0, -1.5, 0]}>
       <primitive object={scene} />
 
@@ -84,20 +57,15 @@ function CreditCard() {
 }
 
 export default function Configurator() {
-  return (
-    <section className="configurator-section">
-      <Canvas>
-        <ambientLight intensity={1.5} />
-        <directionalLight position={[0, 1, 10]} intensity={1.5} castShadow />
-        <spotLight
-          position={[5, 0, 5]}
-          angle={0.5}
-          intensity={0.8}
-          target-position={[0, 0, 0]}
-        />
-        <CreditCard />
-        <OrbitControls />
-      </Canvas>
-    </section>
-  );
+	return (
+		<section className="configurator-section">
+			<Canvas>
+				<Environment preset="warehouse" environmentIntensity={0.5} />
+				<directionalLight position={[-3, 2, -5]} intensity={4} />
+				<directionalLight position={[2, 1, 2]} intensity={3} />
+				<CreditCard />
+				<OrbitControls />
+			</Canvas>
+		</section>
+	)
 }
