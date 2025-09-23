@@ -15,8 +15,8 @@ function CreditCard() {
     blue: { type: "color", value: "#446089" },
     pink: { type: "color", value: "#F4B3FF" },
     red: { type: "color", value: "#E17171" },
-    silver: { type: "gradient", value: ["#262626ff", "#b0b0b0ff"] },
-    gold: { type: "gradient", value: ["#2b2003ff", "#b7980bff"] },
+    silver: { type: "gradient", value: ["#616060ff", "#b0b0b0ff"] },
+    gold: { type: "gradient", value: ["#80600eff", "#e5b014ff"] },
   };
 
   const config = colorMap[color];
@@ -32,26 +32,35 @@ function CreditCard() {
       const material = materials["Gold plate1.002"];
 
       if (config.type === "color") {
+        // flat colors
         material.color.set(config.value);
         material.map = null;
+
+        if (finish === "matte") {
+          material.metalness = 0;
+          material.roughness = 1;
+        } else if (finish === "glossy") {
+          material.metalness = 0;
+          material.roughness = 0.05;
+        } else if (finish === "holographic") {
+          material.metalness = 0.5;
+          material.roughness = 0.1;
+        }
+        //modifies metalness and rougness if silver or gold is selected
       } else if (config.type === "gradient") {
         material.map = gradientTexture;
-        material.color.set("#ffffff"); // base white so gradient shows
-      }
+        material.color.set("#ffffff"); // so gradient shows
 
-      // Apply finish
-      if (finish === "matte") {
-        material.metalness = 0;
-        material.roughness = 1;
-        material.reflectivity = 0;
-      } else if (finish === "glossy") {
-        material.metalness = 0;
-        material.roughness = 0.05;
-        material.reflectivity = 1;
-      } else if (finish === "holographic") {
-        material.metalness = 0.5;
-        material.roughness = 0.1;
-        material.reflectivity = 1;
+        if (finish === "matte") {
+          material.metalness = 0.7;
+          material.roughness = 0.5;
+        } else if (finish === "glossy") {
+          material.metalness = 0.9;
+          material.roughness = 0.2;
+        } else if (finish === "holographic") {
+          material.metalness = 1.0;
+          material.roughness = 0.1;
+        }
       }
 
       material.needsUpdate = true;
