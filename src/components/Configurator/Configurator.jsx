@@ -1,62 +1,81 @@
-import './Configurator.css'
-import { Canvas } from '@react-three/fiber'
-import { useGLTF, OrbitControls, Environment } from '@react-three/drei' // Added Environment
-import { useEffect } from 'react'
-import { useConfigurator } from '../../context/ConfiguratorContext'
+import "./Configurator.css";
+import { Canvas } from "@react-three/fiber";
+import { useGLTF, OrbitControls, Environment } from "@react-three/drei"; // Added Environment
+import { useEffect } from "react";
+import { useConfigurator } from "../../context/ConfiguratorContext";
+import { useGradientTexture } from "../../hooks/useGradientTexture";
 
 function CreditCard() {
-	const { scene, materials, nodes } = useGLTF('../../../credit_card/scene.gltf')
-	const { color, finish } = useConfigurator()
+  const { scene, materials, nodes } = useGLTF(
+    "../../../credit_card/scene.gltf"
+  );
+  const { color, finish } = useConfigurator();
 
-	const colorMap = {
-		blue: '#446089',
-		pink: '#F4B3FF',
-		red: '#E17171',
-		silver: '#C0C0C0',
-		gold: '#FFD700'
-	}
+  const colorMap = {
+    blue: { type: "color", value: "#446089" },
+    pink: { type: "color", value: "#F4B3FF" },
+    red: { type: "color", value: "#E17171" },
+    silver: { type: "gradient", value: ["#262626ff", "#b0b0b0ff"] },
+    gold: { type: "gradient", value: ["#2b2003ff", "#b7980bff"] },
+  };
 
-	useEffect(() => {
-		if (materials['Gold plate1.002']) {
-			const material = materials['Gold plate1.002']
-			material.color.set(colorMap[color])
+  const config = colorMap[color];
 
-			if (finish === 'matte') {
-				material.metalness = 0
-				material.roughness = 1
-				material.reflectivity = 0
-			} else if (finish === 'glossy') {
-				material.metalness = 0
-				material.roughness = 0.05
-				material.reflectivity = 1
-			} else if (finish === 'holographic') {
-				material.metalness = 0.5
-				material.roughness = 0.1
-				material.reflectivity = 1
-			}
+  // Always call hook, but pass defaults if not a gradient
+  const gradientTexture = useGradientTexture(
+    config.type === "gradient" ? config.value[0] : "#000000",
+    config.type === "gradient" ? config.value[1] : "#000000"
+  );
 
-			material.needsUpdate = true
-		}
-	}, [color, finish, materials, colorMap])
+  useEffect(() => {
+    if (materials["Gold plate1.002"]) {
+      const material = materials["Gold plate1.002"];
 
-	return <primitive object={scene} scale={1.4} position={[0, -1.5, 0]} />
+      if (config.type === "color") {
+        material.color.set(config.value);
+        material.map = null;
+      } else if (config.type === "gradient") {
+        material.map = gradientTexture;
+        material.color.set("#ffffff"); // base white so gradient shows
+      }
+
+      // Apply finish
+      if (finish === "matte") {
+        material.metalness = 0;
+        material.roughness = 1;
+        material.reflectivity = 0;
+      } else if (finish === "glossy") {
+        material.metalness = 0;
+        material.roughness = 0.05;
+        material.reflectivity = 1;
+      } else if (finish === "holographic") {
+        material.metalness = 0.5;
+        material.roughness = 0.1;
+        material.reflectivity = 1;
+      }
+
+      material.needsUpdate = true;
+    }
+  }, [color, finish, materials, gradientTexture, config]);
+
+  return <primitive object={scene} scale={1.4} position={[0, -1.5, 0]} />;
 }
 
 export default function Configurator() {
-	return (
-		<section className="configurator-section">
-			<Canvas>
-				<ambientLight intensity={1.5} />
-				<directionalLight position={[0, 1, 10]} intensity={1.5} castShadow />
-				<spotLight
-					position={[5, 0, 5]}
-					angle={0.5}
-					intensity={0.8}
-					target-position={[0, 0, 0]}
-				/>
-				<CreditCard />
-				<OrbitControls />
-			</Canvas>
-		</section>
-	)
+  return (
+    <section className="configurator-section">
+      <Canvas>
+        <ambientLight intensity={1.5} />
+        <directionalLight position={[0, 1, 10]} intensity={1.5} castShadow />
+        <spotLight
+          position={[5, 0, 5]}
+          angle={0.5}
+          intensity={0.8}
+          target-position={[0, 0, 0]}
+        />
+        <CreditCard />
+        <OrbitControls />
+      </Canvas>
+    </section>
+  );
 }
