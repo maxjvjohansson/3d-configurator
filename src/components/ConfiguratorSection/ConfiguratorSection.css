@@ -1,6 +1,17 @@
 .contentContainer {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   gap: 5rem;
   margin-top: 5rem;
+}
+
+@media (max-width: 1220px) {
+  .contentContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: none;
+  }
 }
