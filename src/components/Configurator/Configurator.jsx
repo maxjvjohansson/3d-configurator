@@ -17,13 +17,10 @@ function CreditCard() {
 	}
 
 	useEffect(() => {
-		console.log('Available materials:', Object.keys(materials))
-		console.log('Available nodes:', Object.keys(nodes))
-
-		if (nodes['KORT_front']) {
-			console.log('KORT_front material:', nodes['KORT_front'].material.name)
+		if (materials['Rosa']) {
+			materials['Rosa'].color.set(colorMap[color])
 		}
-	}, [materials, nodes])
+	}, [color, materials, colorMap])
 
 	return <primitive object={scene} scale={1.4} position={[0, -1.5, 0]} />
 }
