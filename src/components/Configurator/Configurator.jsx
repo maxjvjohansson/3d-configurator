@@ -16,6 +16,15 @@ function CreditCard() {
 		gold: '#CCA149'
 	}
 
+	useEffect(() => {
+		console.log('Available materials:', Object.keys(materials))
+		console.log('Available nodes:', Object.keys(nodes))
+
+		if (nodes['KORT_front']) {
+			console.log('KORT_front material:', nodes['KORT_front'].material.name)
+		}
+	}, [materials, nodes])
+
 	return <primitive object={scene} scale={1.4} position={[0, -1.5, 0]} />
 }
 
@@ -24,7 +33,7 @@ export default function Configurator() {
 		<section className="configurator-section">
 			<Canvas>
 				<ambientLight intensity={1} />
-				<directionalLight position={[5, 5, 5]} intensity={1} />
+				<directionalLight position={[3, 2, 5]} intensity={8} />
 				<CreditCard />
 				<OrbitControls />
 			</Canvas>
