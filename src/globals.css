@@ -32,6 +32,10 @@ body {
   font-family: "Inter", sans-serif;
   font-style: normal;
   justify-content: center;
-  padding: 2rem;
+  padding: 2rem 4.5rem;
   color: var(--black-100);
+}
+
+#root {
+  width: 100%;
 }
