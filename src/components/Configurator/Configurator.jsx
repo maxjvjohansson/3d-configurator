@@ -1,6 +1,6 @@
 import './Configurator.css'
 import { Canvas } from '@react-three/fiber'
-import { useGLTF, OrbitControls, Text } from "@react-three/drei";
+import { useGLTF, OrbitControls, Text, Environment } from '@react-three/drei'
 import { useEffect } from 'react'
 import { useConfigurator } from '../../context/ConfiguratorContext'
 
@@ -38,22 +38,23 @@ function CreditCard() {
 
 			material.needsUpdate = true
 		}
-	}, [color, finish, materials, colorMap])
+	}, [color, finish, materials])
 
 	return (
-    <group scale={1.4} position={[0, -1.5, 0]}>
-      <primitive object={scene} />
+		<group scale={1.4} position={[0, -1.5, 0]}>
+			<primitive object={scene} />
 
-      <Text
-        position={[-2.38, -0.1, 0.132]}
-        fontSize={0.175}
-        color="white"
-        anchorX="left"
-        anchorY="middle">
-        {text}
-      </Text>
-    </group>
-  );
+			<Text
+				position={[-2.38, -0.1, 0.132]}
+				fontSize={0.175}
+				color="white"
+				anchorX="left"
+				anchorY="middle"
+			>
+				{text}
+			</Text>
+		</group>
+	)
 }
 
 export default function Configurator() {
