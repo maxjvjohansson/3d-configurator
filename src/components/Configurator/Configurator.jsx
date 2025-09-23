@@ -16,7 +16,7 @@ function CreditCard() {
     pink: { type: "color", value: "#F4B3FF" },
     red: { type: "color", value: "#E17171" },
     silver: { type: "gradient", value: ["#616060ff", "#b0b0b0ff"] },
-    gold: { type: "gradient", value: ["#80600eff", "#e5b014ff"] },
+    gold: { type: "gradient", value: ["#80560eff", "#e5b414ff"] },
   };
 
   const config = colorMap[color];
@@ -28,8 +28,8 @@ function CreditCard() {
   );
 
   useEffect(() => {
-    if (materials["Gold plate1.002"]) {
-      const material = materials["Gold plate1.002"];
+    if (materials["Rosa"]) {
+      const material = materials["Rosa"];
 
       if (config.type === "color") {
         // flat colors
@@ -61,7 +61,6 @@ function CreditCard() {
           material.metalness = 1.0;
           material.roughness = 0.1;
         }
-
       }
 
       material.needsUpdate = true;
@@ -77,8 +76,7 @@ function CreditCard() {
         fontSize={0.175}
         color="white"
         anchorX="left"
-        anchorY="middle"
-      >
+        anchorY="middle">
         {text}
       </Text>
     </group>
