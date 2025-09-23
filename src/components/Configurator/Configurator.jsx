@@ -1,6 +1,6 @@
 import "./Configurator.css";
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, OrbitControls, Environment } from "@react-three/drei"; // Added Environment
+import { useGLTF, OrbitControls, Text } from "@react-three/drei";
 import { useEffect } from "react";
 import { useConfigurator } from "../../context/ConfiguratorContext";
 import { useGradientTexture } from "../../hooks/useGradientTexture";
@@ -9,7 +9,7 @@ function CreditCard() {
   const { scene, materials, nodes } = useGLTF(
     "../../../credit_card/scene.gltf"
   );
-  const { color, finish } = useConfigurator();
+  const { color, finish, text } = useConfigurator();
 
   const colorMap = {
     blue: { type: "color", value: "#446089" },
@@ -61,13 +61,28 @@ function CreditCard() {
           material.metalness = 1.0;
           material.roughness = 0.1;
         }
+
       }
 
       material.needsUpdate = true;
     }
   }, [color, finish, materials, gradientTexture, config]);
 
-  return <primitive object={scene} scale={1.4} position={[0, -1.5, 0]} />;
+  return (
+    <group scale={1.4} position={[0, -1.5, 0]}>
+      <primitive object={scene} />
+
+      <Text
+        position={[-2.38, -0.1, 0.132]}
+        fontSize={0.175}
+        color="white"
+        anchorX="left"
+        anchorY="middle"
+      >
+        {text}
+      </Text>
+    </group>
+  );
 }
 
 export default function Configurator() {
