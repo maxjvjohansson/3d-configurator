@@ -24,7 +24,7 @@ function CreditCard() {
 	}
 
 	useEffect(() => {
-		// Try both "stripes" and "stripe" material names for compatibility
+		// Try to find the main pattern material by checking multiple possible names
 		const materialName = materials['stripes']
 			? 'stripes'
 			: materials['stripe']
@@ -33,20 +33,24 @@ function CreditCard() {
 			? 'patches'
 			: null
 
-		if (materials[materialName]) {
+		if (materialName && materials[materialName]) {
 			const material = materials[materialName]
-
-			// Always set the base color
-			material.color.set(colorMap[color])
 
 			// For textured patterns, handle differently based on the pattern
 			if (pattern !== 'none') {
-				// Set base color to white to let texture show through
-				material.color.set('#ffffff')
-				// Use emissive for the actual color
-				material.emissive.set(colorMap[color])
-				material.emissiveIntensity = 0.3
+				// For metallic finish, keep the selected color as base color
+				if (finish === 'metal') {
+					material.color.set(colorMap[color])
+					material.emissive.set('#000000')
+					material.emissiveIntensity = 0
+				} else {
+					// For non-metallic finishes, use white base + emissive
+					material.color.set('#ffffff')
+					material.emissive.set(colorMap[color])
+					material.emissiveIntensity = 0.3
+				}
 			} else {
+				material.color.set(colorMap[color])
 				material.emissive.set('#000000')
 				material.emissiveIntensity = 0
 			}
@@ -91,9 +95,9 @@ export default function Configurator() {
 	return (
 		<section className="configurator-section">
 			<Canvas>
-				<Environment preset="warehouse" environmentIntensity={0.3} />
-				<directionalLight position={[-3, 2, -5]} intensity={6} />
-				<directionalLight position={[2, 1, 2]} intensity={6} />
+				<Environment preset="warehouse" environmentIntensity={0.5} />
+				<directionalLight position={[-3, 2, -5]} intensity={4} />
+				<directionalLight position={[2, 1, 2]} intensity={3} />
 				<CreditCard />
 				<OrbitControls minDistance={3} maxDistance={15} />
 			</Canvas>
