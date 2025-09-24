@@ -46,6 +46,17 @@ export default function ({ header }) {
 					/>
 					<span>Stripes</span>
 				</label>
+
+				<label>
+					<input
+						type="radio"
+						name="pattern"
+						value="patches"
+						checked={pattern === 'patches'}
+						onChange={handleChange}
+					/>
+					<span>patches</span>
+				</label>
 				<label>
 					<input
 						type="radio"
