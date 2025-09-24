@@ -6,8 +6,14 @@ import { useConfigurator } from '../../context/ConfiguratorContext'
 
 function CreditCard() {
 	const { pattern, color, finish, text } = useConfigurator()
+	console.log('Current pattern value:', pattern)
 
-	const modelPath = `../../../credit_card/${pattern || 'none'}.glb`
+	const modelPath = `../../../credit_card/${pattern || 'none'}/${
+		pattern || 'none'
+	}.gltf`
+
+	console.log('Attempting to load:', modelPath)
+
 	const { scene, materials, nodes } = useGLTF(modelPath)
 
 	const colorMap = {
@@ -19,14 +25,20 @@ function CreditCard() {
 	}
 
 	useEffect(() => {
-		const materialName = Object.keys(materials).find(
-			(name) => name.startsWith('Grund') || name.startsWith('Grud') //Adjusting for spelling error in glb file
-		)
+		const materialName = 'stripes'
 
 		if (materials[materialName]) {
 			const material = materials[materialName]
 
 			material.color.set(colorMap[color])
+
+			if (pattern !== 'none') {
+				material.emissive.set(colorMap[color])
+				material.emissiveIntensity = 0.9
+			} else {
+				material.emissive.set('#000')
+				material.emissiveIntensity = 0
+			}
 
 			if (finish === 'matte') {
 				material.metalness = 0
@@ -43,13 +55,8 @@ function CreditCard() {
 			}
 
 			material.needsUpdate = true
-		} else {
-			console.warn(
-				'Main card material not found. Available:',
-				Object.keys(materials)
-			)
 		}
-	}, [color, finish, materials]) // Removed colorMap from dependencies
+	}, [color, finish, materials, pattern])
 
 	return (
 		<group scale={1.4} position={[0, -1.5, 0]}>
@@ -72,7 +79,7 @@ export default function Configurator() {
 	return (
 		<section className="configurator-section">
 			<Canvas>
-				<Environment preset="warehouse" environmentIntensity={0.5} />
+				<Environment preset="warehouse" environmentIntensity={0.8} />
 				<directionalLight position={[-3, 2, -5]} intensity={4} />
 				<directionalLight position={[2, 1, 2]} intensity={3} />
 				<CreditCard />
