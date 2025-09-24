@@ -5,8 +5,10 @@ import { useEffect } from 'react'
 import { useConfigurator } from '../../context/ConfiguratorContext'
 
 function CreditCard() {
-	const { scene, materials, nodes } = useGLTF('../../../credit_card/scene.gltf')
-	const { color, finish, text } = useConfigurator()
+	const { pattern, color, finish, text } = useConfigurator()
+	const { scene, materials, nodes } = useGLTF(
+		`../../../credit_card/${pattern}.gltf`
+	)
 
 	const colorMap = {
 		blue: '#31417D',
