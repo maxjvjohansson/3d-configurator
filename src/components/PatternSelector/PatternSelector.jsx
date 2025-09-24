@@ -30,8 +30,8 @@ export default function ({ header }) {
 					<input
 						type="radio"
 						name="pattern"
-						value="wavy"
-						checked={pattern === 'wavy'}
+						value="waves"
+						checked={pattern === 'waves'}
 						onChange={handleChange}
 					/>
 					<span>Wavy</span>
