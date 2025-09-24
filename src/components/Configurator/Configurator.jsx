@@ -6,13 +6,12 @@ import { useConfigurator } from '../../context/ConfiguratorContext'
 
 function CreditCard() {
 	const { pattern, color, finish, text } = useConfigurator()
-	console.log('Current pattern value:', pattern)
 
+	console.log('Current pattern value:', pattern) // Debug log
 	const modelPath = `../../../credit_card/${pattern || 'none'}/${
 		pattern || 'none'
 	}.gltf`
-
-	console.log('Attempting to load:', modelPath)
+	console.log('Attempting to load:', modelPath) // Debug log
 
 	const { scene, materials, nodes } = useGLTF(modelPath)
 
@@ -25,21 +24,34 @@ function CreditCard() {
 	}
 
 	useEffect(() => {
-		const materialName = 'stripes'
+		// Try both "stripes" and "stripe" material names for compatibility
+		const materialName = materials['stripes']
+			? 'stripes'
+			: materials['stripe']
+			? 'stripe'
+			: materials['patches']
+			? 'patches'
+			: null
 
 		if (materials[materialName]) {
 			const material = materials[materialName]
 
+			// Always set the base color
 			material.color.set(colorMap[color])
 
+			// For textured patterns, handle differently based on the pattern
 			if (pattern !== 'none') {
+				// Set base color to white to let texture show through
+				material.color.set('#ffffff')
+				// Use emissive for the actual color
 				material.emissive.set(colorMap[color])
-				material.emissiveIntensity = 0.9
+				material.emissiveIntensity = 0.3
 			} else {
-				material.emissive.set('#000')
+				material.emissive.set('#000000')
 				material.emissiveIntensity = 0
 			}
 
+			// Apply finish settings
 			if (finish === 'matte') {
 				material.metalness = 0
 				material.roughness = 1
@@ -79,9 +91,9 @@ export default function Configurator() {
 	return (
 		<section className="configurator-section">
 			<Canvas>
-				<Environment preset="warehouse" environmentIntensity={0.8} />
-				<directionalLight position={[-3, 2, -5]} intensity={4} />
-				<directionalLight position={[2, 1, 2]} intensity={3} />
+				<Environment preset="warehouse" environmentIntensity={0.3} />
+				<directionalLight position={[-3, 2, -5]} intensity={6} />
+				<directionalLight position={[2, 1, 2]} intensity={6} />
 				<CreditCard />
 				<OrbitControls minDistance={3} maxDistance={15} />
 			</Canvas>
