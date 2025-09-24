@@ -61,11 +61,11 @@ export default function Configurator() {
 	return (
 		<section className="configurator-section">
 			<Canvas>
-				<Environment preset="warehouse" environmentIntensity={0.5} />
+				<Environment preset="warehouse" environmentIntensity={0.8} />
 				<directionalLight position={[-3, 2, -5]} intensity={4} />
 				<directionalLight position={[2, 1, 2]} intensity={3} />
 				<CreditCard />
-				<OrbitControls />
+				<OrbitControls minDistance={2} maxDistance={6} />
 			</Canvas>
 		</section>
 	)
