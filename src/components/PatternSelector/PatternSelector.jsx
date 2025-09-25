@@ -26,46 +26,27 @@ export default function ({ header }) {
 					/>
 					<span>None</span>
 				</label>
+
 				<label>
 					<input
 						type="radio"
 						name="pattern"
-						value="waves"
-						checked={pattern === 'waves'}
+						value="wavy"
+						checked={pattern === 'wavy'}
 						onChange={handleChange}
 					/>
 					<span>Wavy</span>
-				</label>
-				<label>
-					<input
-						type="radio"
-						name="pattern"
-						value="stripes"
-						checked={pattern === 'stripes'}
-						onChange={handleChange}
-					/>
-					<span>Stripes</span>
 				</label>
 
 				<label>
 					<input
 						type="radio"
 						name="pattern"
-						value="patches"
-						checked={pattern === 'patches'}
+						value="halftone"
+						checked={pattern === 'halftone'}
 						onChange={handleChange}
 					/>
-					<span>patches</span>
-				</label>
-				<label>
-					<input
-						type="radio"
-						name="pattern"
-						value="faded"
-						checked={pattern === 'faded'}
-						onChange={handleChange}
-					/>
-					<span>Faded</span>
+					<span>Halftone</span>
 				</label>
 			</div>
 		</div>
