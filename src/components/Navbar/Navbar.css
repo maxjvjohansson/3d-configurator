@@ -1,23 +1,25 @@
+header {
+  display: flex;
+}
+
 .navbar {
   display: flex;
   width: 100%;
-  max-width: 100%;
-  min-width: 60rem;
+  min-width: fit-content;
   height: 5.5rem;
   justify-content: space-between;
   align-items: center;
-  flex-shrink: 0;
   padding: 0 2rem;
   border-radius: 5.0625rem;
-  background: #f3f3f3;
+  background: var(--white-100);
 }
 
 .logo {
   font-family: Inter, sans-serif;
   font-size: 1.88325rem;
-  font-style: italic;
+  font-style: normal;
   text-decoration: none;
-  color: #000;
+  color: var(--black-100);
 }
 
 .logo-light {
@@ -37,7 +39,7 @@
 
 nav a {
   text-decoration: none;
-  color: black;
+  color: var(--black-100);
   font-size: 1.25rem;
   font-style: italic;
   font-weight: 400;

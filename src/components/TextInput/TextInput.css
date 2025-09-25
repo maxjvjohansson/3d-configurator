@@ -1,14 +1,13 @@
 .text-input {
   display: flex;
   padding: 1.5rem;
-  height: 8rem;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
   align-self: stretch;
   border-radius: 1rem;
-  border: 3px solid var(--White-50, #cacaca);
-  background: var(--White-75, #efefef);
+  border: 3px solid var(--white-50);
+  background: var(--white-75);
 }
 
 .text-input label {
@@ -26,6 +25,6 @@
   gap: 0.5rem;
   flex: 1 0 0;
   border-radius: 2rem;
-  border: 1px solid var(--White-25, #878787);
-  background: var(--White-100, #f3f3f3);
+  border: 1px solid var(--white-25);
+  background: var(--white-100);
 }
