@@ -1,4 +1,5 @@
 .configurator-section {
-	width: 43rem;
-	height: 28rem;
+  width: 43rem;
+  height: 28rem;
+  cursor: grab;
 }
